@@ -3,10 +3,6 @@
 
 int main(void)
 {
-    /*
-    char *ch="hello";
-    printf("%s",ch);
-    */
     Consle *consle=NULL;
     consle=Consle_Creater();
     if(!consle)
@@ -15,22 +11,21 @@ int main(void)
         return 0;
     }
 
-
     int ret;
 	ret = Consle_SetoperatorNum(consle, 100, 100);
-    if(ret!=0)//如果输入的符号和数字  出现异常底层将会返回-1
+    if(ret!=0)//  出现异常底层将会返回-1
     { 
          printf("Consle_Inputoperator() error!!!\n");
          return 0;
     }
 
-	Consle_conunt_start(consle, '-');//此时我需要知道回调函数和Consle结构体
-	//返回业务功能的入口地址
+	Consle_conunt_start(consle, '-');//上层应用需知道 如何传入参数，参数有什么功能
+
 
     unsigned int result= Consle_Outputresult(consle);//结果通过返回值返回出来
     printf("The last result=%d",result);
 
-    Consle_Destory(consle);
+    Consle_Destory(consle);//释放资源
 
     return 0;
 }
